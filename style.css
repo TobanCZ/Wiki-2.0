@@ -1,67 +1,125 @@
-@font-face { font-family: Logo; src: url('logo_font.ttf'); } 
+*
+{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+}
 
 .logo
 {
-    width: 180px;
+    width: 270px;
+    margin-right: auto;
 }
 
-.flex_logo
+a 
 {
-    display: flex;
-    align-items: center;  
+    margin-right: auto;
+    text-decoration: none;
+    color: black;
+    
 }
 
-.flex_logo_text
+a:hover
 {
-    display: flex;
-    align-items: baseline;
+    text-decoration: underline;
+    color: rgb(66, 66, 66);
 }
 
-h1
+body
 {
-    font-weight:normal;
-    font-family: Logo;
-    font-size: 70px;
+    background-color: rgb(238, 238, 238);
 }
 
-.smaller_text
+button 
 {
-    font-size: 50px;
+    padding: 12px;
+    background-color: rgb(255, 255, 255);
+    font-size: 15px;
+    border-radius: 3px;
+    border: 0px;
+    margin: auto;
 }
 
-.word 
+button:hover 
 {
-    width: 45%;
-    background-color: rgb(221, 221, 221);
-    border: 1px solid black;
-    float: left;
-    overflow: auto;
+    background-color: rgb(240, 240, 240);
+    transition: 0.2s;
+}
+
+button:active 
+{
+    background-color: white;
+}
+
+i
+{
     text-align: center;
 }
 
-.word img
+p
 {
-    width: 500px;
+    padding: 0px 20px;
 }
 
-.word_flex
+header
+{
+    background-color: rgb(221, 221, 221);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px 8%;
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+.flex
+{
+    background-color: rgb(238, 238, 238);
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.Element 
 {
     display: flex;
-    align-items: flex-start ;
-    flex-wrap: wrap;
-    border: 1px solid green;
+    width: 700px;
+    background-color: white; 
+    padding: 20px;
+    
 }
 
-h2
+.images
 {
-    margin:auto;
-    padding-left: 5px;
-    padding-top: 5px;
-    border: 1px solid red;
+    flex: 1;
+    margin: auto;
+    width: 200px;
 }
 
-h3
-{  
-    border: 1px solid red;
-    padding-right: 10px;
+.txt_flex
+{
+    flex: 3;
+}
+
+p 
+{
+
+    text-align: left;
+    font-size: 15px;
+}
+
+h1 
+{
+    font-size: 25px;
+    padding: 0px 0px 15px 20px;
+}
+
+footer
+{
+  padding: 20px;
+  text-align: center;
+  margin: auto;
 }
