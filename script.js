@@ -1,3 +1,4 @@
+//* ------------------ Wikipedia api URLs ------------------
 let Url_Search = 'https://cs.wikipedia.org/w/api.php?action=opensearch&format=json&search=';
 let Url_Thumbnail = 'https://cs.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&&pithumbsize=500&pageids=';
 let Url_Random = 'https://cs.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&rnlimit=8';
@@ -9,6 +10,7 @@ let search_bool = false;
 
 onLoad();
 
+//* ------------------ On load generate 6 random ------------------
 async function onLoad()
 {
   while(document.getElementsByClassName("Element").length < 6)
@@ -17,17 +19,18 @@ async function onLoad()
   }
 }
 
-
-  window.onscroll = function() {
+//* ------------------ Add new Random if is on bottom of page ------------------
+  window.onscroll = function() 
+  {
     if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
       if(search_bool == false)
       {
         Random_Button();
       }
     }
-  }
+}
 
-
+//* ------------------ Random Button Click ------------------
 function Button()
 {
   search_bool = false;
@@ -37,10 +40,9 @@ function Button()
   onLoad();
 }
 
+//* ------------------ Random Button Click ------------------
 async function Random_Button()
 { 
-  
- 
   let Data;
   await random_Data()
   .then(results => Data = results);
@@ -48,6 +50,7 @@ async function Random_Button()
   read_Json_Random(Data);
 }
 
+//* ------------------ Get Json ------------------
 async function random_Data()
 {
   const response = await fetch(Url_Random + "&origin=*");
@@ -56,6 +59,7 @@ async function random_Data()
   return data;
 }
 
+//* ------------------ Wikipedia api URLs ------------------
 async function search_name(word)
 {
   const response = await fetch(Url_Search + word + "&origin=*");
@@ -64,6 +68,7 @@ async function search_name(word)
   return data;
 }
 
+//* ------------------ Search id by word ------------------
 async function search_id(word)
 {
   word = word.split(" ").join("_");
@@ -74,6 +79,7 @@ async function search_id(word)
   return data;
 }
 
+//* ------------------ Get text and image from Json by id ------------------
 async function get_txt_and_img_data(id)
 {
   const text = await fetch(Url_Text + id + "&origin=*");
@@ -95,6 +101,7 @@ async function get_txt_and_img_data(id)
   return {txt, img};
 }
 
+//* ------------------ Random data reader from Json ------------------
 async function read_Json_Random(id_data)
 {
   for(let i = 0;i < id_data.query.random.length; i++) 
@@ -137,6 +144,7 @@ async function read_Json_Random(id_data)
   }
 }
 
+//* ------------------ Read data from specific id from Json ------------------
 async function read_id(id_data)
 {
   let id = id_data.query.pages[0].pageid;
@@ -177,6 +185,7 @@ async function read_id(id_data)
   
 }
 
+//* ------------------ Search id from Json ------------------
 async function search_for_id(data)
 {
   for(let i = 0; i < data[1].length; i++)
@@ -190,6 +199,7 @@ async function search_for_id(data)
   
 }
 
+//* ------------------ Split text to sentences ------------------
 function split_to_sentences(txt)
 {
   let x = [1,2,3,4,5,6,7,8,9,'I','V','tzv','m','n','resp','-'];
@@ -234,6 +244,7 @@ function split_to_sentences(txt)
   return txtSentence;
 }
 
+//* ------------------ Built Element ------------------
 function Built(title, text ,thumbnail,search,url)
 {
   if(search_bool == false || search)
@@ -282,6 +293,7 @@ function Built(title, text ,thumbnail,search,url)
 }
 }
 
+//* ------------------ Gets word from input ------------------
 async function Search()
 {
   search_bool = true;
@@ -295,9 +307,10 @@ async function Search()
   search_for_id(Data);
 }
 
+//* ------------------ Key ovenet on word input ------------------
 var input = document.getElementById("input");
 input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
+  if (event.keyCode == 13) {
    event.preventDefault();
    Search();
   }
